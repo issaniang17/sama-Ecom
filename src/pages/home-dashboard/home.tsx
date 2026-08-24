@@ -1,5 +1,5 @@
-import GetAllproducts from "../fetchApi/getAllproducts";
-import LinkButton from "../ui/linkButton";
+import GetAllproducts from "../../components/fetchApi/getAllproducts";
+import LinkButton from "../../components/ui/linkButton";
 
 const Home = () => {
   return (
@@ -16,11 +16,15 @@ const Home = () => {
           </p>
         </div>
         <div className="md:flex md:items-end">
-          <LinkButton nom="Parcourez tous les produits" url="/boutique" className="border-slate-950 border py-4 px-6"/>
+          <LinkButton
+            nom="Parcourez tous les produits"
+            url="/boutique"
+            className="border-slate-950 border py-4 px-6"
+          />
         </div>
       </div>
       <div className="my-20">
-        <GetAllproducts homeView/>
+        <GetAllproducts homeView />
       </div>
     </div>
   );

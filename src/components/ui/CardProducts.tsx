@@ -13,10 +13,10 @@ const CardProducts = ({url, title, price, image, vedette, description}:productCa
             }
             <img src={image} alt={title} className="bg-blend-multiply"/>
         </div>
-        <div className="flex justify-between px-5 mt-3">
-            <p className="text-lg">{title}</p>
-            <p className="text-gray-400 text-xl">{price}</p>
-            <p>{description}</p>
+        <div className="flex gap-3 justify-between  px-2  mt-3">
+            {title && <p className="text-lg">{title}</p>}
+            {price && <p className="text-gray-400 text-xl">{price}</p>}
+            {description && <p>{description}</p>}
         </div>
     </Link>
   )
