@@ -1,4 +1,4 @@
-import type { linkList } from "@/types/footerLink";
+import type { footerLinkProps, linkList } from "@/types/footerLink";
 import type {IconType} from 'react-icons'
 import {FaFacebookF, FaInstagram, FaLinkedin} from 'react-icons/fa'
 import {BsTwitterX} from 'react-icons/bs'
@@ -28,18 +28,26 @@ export const footerLink: linkList = {
 export const socialMediaLinks: {name:IconType; link:string}[] = [
   {
     name:FaFacebookF,
-    link:'https://'
+    link:'#'
   },
   {
     name:FaInstagram,
-    link:'https://'
+    link:'#'
   },
   {
     name:FaLinkedin,
-    link:'https://'
+    link:'#'
   },
   {
     name:BsTwitterX,
-    link:'https://'
+    link:'#'
   },
+]
+
+export const categoryNav: footerLinkProps[] = [
+  {nom:'Tous les produits', url:'/boutique'},
+  {nom:'Beauté', url:'beauty'},
+  {nom:'Parfums', url:'fragrances'},
+  {nom:'Meubles', url:'furniture'},
+  {nom:'Groceries', url:'groceries'}
 ]

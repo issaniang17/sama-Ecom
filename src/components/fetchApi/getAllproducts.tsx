@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import CardProducts from "../ui/CardProducts";
 import CategoryCard from "../ui/categoryCard";
-type productProps = {
+import FiltreProducts from "./filtreProducts";
+
+export type productProps = {
   id: number;
   title: string;
   price: number;
@@ -15,25 +15,9 @@ type viewProduct = {
   allProductsView?: boolean;
 };
 const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
-  const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState<productProps[]>([]);
-  const [erreur, setErreur] = useState<string | null>(null);
-  useEffect(() => {
-    const allProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get("https://dummyjson.com/products");
-        setProducts(response.data.products);
-      } catch (error) {
-        if (axios.isAxiosError(error)) {
-          setErreur(error.message);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    allProducts();
-  }, []);
+  const { data, loading, erreur } = FiltreProducts<{
+    products: productProps[];
+  }>("https://dummyjson.com/products");
   if (loading) {
     return (
       <div className="flex flex-col gap-3 items-center md:flex-row md:justify-center">
@@ -115,52 +99,55 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
       </div>
     );
   }
-  if (products.length === 0) {
+
+  if (!data) {
     return (
       <div className="text-3xl font-bold flex justify-center items-center text-red-500">
         Pas de produits disponible
       </div>
     );
   }
-  const beautyFirstProduct = products
+  const beautyFirstProduct = data?.products
     .filter((produit) => produit.category === "beauty")
     .slice(0, 4);
-  const fragrancesFirstProduct = products
+  const fragrancesFirstProduct = data?.products
     .filter((produit) => produit.category === "fragrances")
     .slice(0, 3);
-  const furnitureFirstProduct = products
+  const furnitureFirstProduct = data?.products
     .filter((produit) => produit.category === "furniture")
     .slice(0, 3);
-  console.log(products);
+
   return (
     <div>
+      {/* Home Page et Affichage de produit selectif */}
       {homeView && (
         <div className="flex flex-col gap-5 my-8">
           <div className="md:grid flex gap-4 grid-cols-3 scrollbar-none overflow-x-scroll">
             <CardProducts
-              image={beautyFirstProduct[0]?.thumbnail ?? ""}
-              title={beautyFirstProduct[0]?.title ?? ""}
-              price={beautyFirstProduct[0]?.price ?? 0}
+              image={beautyFirstProduct[0].thumbnail}
+              title={beautyFirstProduct[0].title}
+              price={beautyFirstProduct[0].price}
               url={`/boutiques/beauty/${beautyFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
               vedette
             />
 
             <CardProducts
-              image={furnitureFirstProduct[0]?.thumbnail ?? ""}
-              title={furnitureFirstProduct[0]?.title ?? ""}
-              price={furnitureFirstProduct[0]?.price ?? 0}
+              image={furnitureFirstProduct[0].thumbnail}
+              title={furnitureFirstProduct[0].title}
+              price={furnitureFirstProduct[0].price}
               url={`/boutiques/furniture/${furnitureFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
               vedette
             />
 
             <CardProducts
-              image={fragrancesFirstProduct[0]?.thumbnail ?? ""}
-              title={fragrancesFirstProduct[0]?.title ?? ""}
-              price={fragrancesFirstProduct[0]?.price ?? 0}
+              image={fragrancesFirstProduct[0].thumbnail}
+              title={fragrancesFirstProduct[0].title}
+              price={fragrancesFirstProduct[0].price}
               url={`/boutiques/fragrances/${fragrancesFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
               vedette
             />
           </div>
+          {/* Categorie de produits */}
           <div className="my-10">
             <h2 className="text-2xl md:text-4xl">Parcourez par catégories</h2>
             <p className="md:w-1/3 leading-loose font-medium my-3 opacity-60">
@@ -183,7 +170,7 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
               className="md:col-span-2 flex flex-col gap-4 md:flex-row md:justify-between space-y-4"
               titre="Exposition"
               image={fragrancesFirstProduct[1].thumbnail}
-              lien="/boutique/beauty"
+              lien={`/boutique/${fragrancesFirstProduct[0].category}`}
               nomLien="Parfums"
               key={fragrancesFirstProduct[1].id}
               description="Profitez de nos large gamme de parfums tout genre."
@@ -191,14 +178,14 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
             />
             <CategoryCard
               image={furnitureFirstProduct[1].thumbnail}
-              lien="/boutique/furniture"
+              lien={`/boutique/${furnitureFirstProduct[0].category}`}
               nomLien="Meubles"
               className="flex flex-col-reverse items-center"
             />
             <CategoryCard
               image={beautyFirstProduct[2].thumbnail}
               className="flex flex-col-reverse items-center"
-              lien="/boutique/furniture"
+              lien={`/boutique/${beautyFirstProduct[0].category}`}
               nomLien="Beauté"
             />
           </div>
@@ -207,37 +194,39 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
           </div>
           <div className="md:grid flex gap-4 grid-cols-3 scrollbar-none overflow-x-scroll">
             <CardProducts
-              image={beautyFirstProduct[3]?.thumbnail ?? ""}
-              description={beautyFirstProduct[3]?.description ?? ""}
-              url={`/blog/${beautyFirstProduct[3]?.title.toLowerCase().split(" ").join("")}`}
+              image={beautyFirstProduct[3].thumbnail}
+              description={beautyFirstProduct[3].description}
+              url={`/blog/${beautyFirstProduct[3].title.toLowerCase().split(" ").join("")}`}
             />
 
             <CardProducts
-              image={furnitureFirstProduct[2]?.thumbnail ?? ""}
-              description={furnitureFirstProduct[2]?.description ?? ""}
-              url={`/blog/${furnitureFirstProduct[2]?.title.toLowerCase().split(" ").join("")}`}
+              image={furnitureFirstProduct[2].thumbnail}
+              description={furnitureFirstProduct[2].description}
+              url={`/blog/${furnitureFirstProduct[2].title.toLowerCase().split(" ").join("")}`}
             />
 
             <CardProducts
-              image={fragrancesFirstProduct[2]?.thumbnail ?? ""}
-              description={fragrancesFirstProduct[2]?.description ?? ""}
-              url={`/blog/${fragrancesFirstProduct[2]?.title.toLowerCase().split(" ").join("")}`}
+              image={fragrancesFirstProduct[2].thumbnail}
+              description={fragrancesFirstProduct[2].description}
+              url={`/blog/${fragrancesFirstProduct[2].title.toLowerCase().split(" ").join("")}`}
             />
           </div>
         </div>
       )}
+      {/* Page boutique avec tous les produits */}
       <div className="grid md:grid-cols-3 gap-4">
         {allProductsView &&
-          products.map((produit) => (
-            <div key={produit.id}>
-              <img src={produit.thumbnail} alt={produit.title} />
-              <div className="flex justify-between">
-                <p>{produit.title}</p>
-                <p>{produit.price}</p>
-              </div>
-            </div>
+          data?.products.map((produit) => (
+            <CardProducts
+              key={produit.id}
+              image={produit.thumbnail}
+              url={`/boutique/${produit.category}/${produit.title.toLowerCase().split(" ").join("")}`}
+              price={produit.price}
+              title={produit.title}
+            />
           ))}
       </div>
+      {/* Filtre des produits */}
     </div>
   );
 };
