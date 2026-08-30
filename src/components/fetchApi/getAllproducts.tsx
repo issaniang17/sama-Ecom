@@ -127,7 +127,7 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
               image={beautyFirstProduct[0].thumbnail}
               title={beautyFirstProduct[0].title}
               price={beautyFirstProduct[0].price}
-              url={`/boutiques/beauty/${beautyFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
+              url={`/boutique/beauty/${beautyFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
               vedette
             />
 
@@ -135,7 +135,7 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
               image={furnitureFirstProduct[0].thumbnail}
               title={furnitureFirstProduct[0].title}
               price={furnitureFirstProduct[0].price}
-              url={`/boutiques/furniture/${furnitureFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
+              url={`/boutique/furniture/${furnitureFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
               vedette
             />
 
@@ -143,7 +143,7 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
               image={fragrancesFirstProduct[0].thumbnail}
               title={fragrancesFirstProduct[0].title}
               price={fragrancesFirstProduct[0].price}
-              url={`/boutiques/fragrances/${fragrancesFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
+              url={`/boutique/fragrances/${fragrancesFirstProduct[0]?.title.toLowerCase().split(" ").join("")}`}
               vedette
             />
           </div>
