@@ -9,6 +9,9 @@ import { Toaster } from "sonner";
 import Home from "./pages/home-dashboard/home";
 import All from "./pages/boutique/All";
 import GetOneCategory from "./components/fetchApi/getOneCategory";
+import GetOneProduct from "./components/fetchApi/getOneProduct";
+
+
 
 
 
@@ -16,13 +19,16 @@ import GetOneCategory from "./components/fetchApi/getOneCategory";
 const App = () => {
   return (
     <>
+   
       <Routes>
+        
         <Route element={<HomeDashboard />}>
           <Route index element={<Home />} />
           <Route path="boutique" element={<AllProducts/>}>
             <Route index element={<All/>}/>
-            <Route path=":slug" element={<GetOneCategory/>}/> 
+            <Route path=":slug" element={<GetOneCategory/>}/>
           </Route>
+          <Route path="boutique/:slug/:produit" element={<GetOneProduct/>}/> 
           <Route path="a-propos" element={<About />} />
           <Route path="faq" element={<Faq />} />
           <Route path="blog" element={<Blog />} />
