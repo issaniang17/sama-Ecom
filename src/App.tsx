@@ -10,6 +10,7 @@ import Home from "./pages/home-dashboard/home";
 import All from "./pages/boutique/All";
 import GetOneCategory from "./components/fetchApi/getOneCategory";
 import GetOneProduct from "./components/fetchApi/getOneProduct";
+import Page404 from "./pages/page404";
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
         </Route>
+        <Route path="/404" element={<Page404/>}/>
       </Routes>
       <Toaster richColors position="top-center" />
     </>

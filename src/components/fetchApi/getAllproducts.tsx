@@ -122,7 +122,7 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
       {/* Home Page et Affichage de produit selectif */}
       {homeView && (
         <div className="flex flex-col gap-5 my-8">
-          <div className="md:grid flex gap-4 grid-cols-3 scrollbar-none overflow-x-scroll">
+          <div className="md:grid flex gap-4 grid-cols-3 scrollbar-none overflow-x-scroll py-4">
             <CardProducts
               image={beautyFirstProduct[0].thumbnail}
               title={beautyFirstProduct[0].title}
@@ -192,7 +192,7 @@ const GetAllproducts = ({ allProductsView, homeView }: viewProduct) => {
           <div className="text-2xl md:text-4xl my-10">
             <h2>Nos articles et actualités</h2>
           </div>
-          <div className="md:grid flex gap-4 grid-cols-3 scrollbar-none overflow-x-scroll">
+          <div className="md:grid flex gap-4 grid-cols-3 scrollbar-none overflow-x-scroll py-4">
             <CardProducts
               image={beautyFirstProduct[3].thumbnail}
               description={beautyFirstProduct[3].description}

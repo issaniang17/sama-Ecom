@@ -34,7 +34,7 @@ export const footerLink: linkList = {
   support: [
     { nom: "FAQ", url: "/faq" },
     { nom: "Contact", url: "/contact" },
-    { nom: "Produit", url: "/boutique/produit" },
+    { nom: "Produit", url: "/boutique/beauty/essencemascaralashprincess" },
     { nom: "404", url: "/404" },
   ],
   liensFinaux: [
