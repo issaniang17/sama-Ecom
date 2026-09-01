@@ -50,7 +50,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex gap-5 items-center">
           {navBar.liens.map((lien, index) => (
-            <NavLink to={lien.lien} key={index} className={({isActive})=> isActive ? "text-slate-900": "text-gray-400"}>
+            <NavLink to={lien.lien} key={index} className={({isActive})=> isActive ? "text-slate-900": "text-gray-400 hover:text-black transition-colors duration-150 ease-in"}>
               <span className="capitalize">{lien.nom}</span>
             </NavLink>
           ))}
@@ -63,7 +63,7 @@ const Navbar = () => {
           className={`flex flex-col gap-4 justify-around animate-[ToptoBottom_1s_ease-in] md:hidden py-8 divide-y divide-gray-400 space-y-3 leading-loose `} onClick={toggleMenu}
         >
           {navBar.liens.map((lien, index) => (
-            <NavLink to={lien.lien} key={index} className={({isActive})=> isActive ? "text-slate-900": "text-gray-400"}>
+            <NavLink to={lien.lien} key={index} className={({isActive})=> isActive ? "text-slate-900": "text-gray-400 hover:text-black transition-colors duration-150 ease-in"}>
               <span className="capitalize">{lien.nom}</span>
             </NavLink>
           ))}
