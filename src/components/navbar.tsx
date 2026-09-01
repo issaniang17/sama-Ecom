@@ -14,23 +14,23 @@ const Navbar = () => {
     liens: [
       {
         nom: "Tous les produits",
-        lien: "boutique",
+        lien: "/boutique",
       },
       {
         nom: "à propos ",
-        lien: "a-propos",
+        lien: "/a-propos",
       },
       {
         nom: "FAQ",
-        lien: "faq",
+        lien: "/faq",
       },
       {
         nom: "Blog",
-        lien: "blog",
+        lien: "/blog",
       },
       {
         nom: "Contact",
-        lien: "contact",
+        lien: "/contact",
       },
     ],
   };
