@@ -298,3 +298,9 @@ export const faqQuestion: faqQuestionProps = {
     ],
   },
 };
+
+// Nav admin
+export const navAdmin: {url:string, nom:string}[] = [
+  {nom:'Mes Produits', url:'/admin/mes-produits'},
+  {nom:'Ajouter un produits', url:'/admin/add-product'},
+  ]

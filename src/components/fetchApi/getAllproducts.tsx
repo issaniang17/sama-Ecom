@@ -9,6 +9,7 @@ export type productProps = {
   category: string;
   description: string;
   thumbnail: string;
+  stock?:number
 };
 type viewProduct = {
   homeView?: boolean;

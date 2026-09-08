@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import HomeDashboard from "./pages/home-dashboard/homeDashboard";
 import AllProducts from "./pages/home-dashboard/all-products";
 import About from "./pages/home-dashboard/about";
@@ -11,31 +11,36 @@ import All from "./pages/boutique/All";
 import GetOneCategory from "./components/fetchApi/getOneCategory";
 import GetOneProduct from "./components/fetchApi/getOneProduct";
 import Page404 from "./pages/page404";
-
-
-
-
-
+import Login from "./pages/adminDashboard/login";
+import Admin from "./pages/adminDashboard/admin";
+import MesProduits from "./pages/adminDashboard/mesProduits";
+import CreerProduits from "./pages/adminDashboard/creerProduits";
+import ModifierProduits from "./pages/adminDashboard/modifierProduits";
 
 const App = () => {
   return (
     <>
-   
       <Routes>
-        
         <Route element={<HomeDashboard />}>
           <Route index element={<Home />} />
-          <Route path="boutique" element={<AllProducts/>}>
-            <Route index element={<All/>}/>
-            <Route path=":slug" element={<GetOneCategory/>}/>
+          <Route path="boutique" element={<AllProducts />}>
+            <Route index element={<All />} />
+            <Route path=":slug" element={<GetOneCategory />} />
           </Route>
-          <Route path="boutique/:slug/:produit" element={<GetOneProduct/>}/> 
+          <Route path="boutique/:slug/:produit" element={<GetOneProduct />} />
           <Route path="a-propos" element={<About />} />
           <Route path="faq" element={<Faq />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
         </Route>
-        <Route path="/404" element={<Page404/>}/>
+        <Route path="/admin" element={<Admin />}>
+          <Route index element={<Navigate to={"mes-produits"} replace />} />
+          <Route path="mes-produits" element={<MesProduits />} />
+          <Route path="add-product" element={<CreerProduits />} />
+          <Route path="update-product" element={<ModifierProduits />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/404" element={<Page404 />} />
       </Routes>
       <Toaster richColors position="top-center" />
     </>

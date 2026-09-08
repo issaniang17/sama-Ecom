@@ -32,6 +32,10 @@ const Navbar = () => {
         nom: "Contact",
         lien: "/contact",
       },
+      {
+        nom: "Login",
+        lien: "/login",
+      },
     ],
   };
   return (
